@@ -1,9 +1,6 @@
-from ast import alias
 import math
-from tkinter.font import ITALIC
 import turtle as t
 from time import sleep
-import time
 game: bool = True
 
 #creating a window
