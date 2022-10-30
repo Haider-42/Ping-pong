@@ -1,4 +1,5 @@
 from ast import alias
+import math
 from tkinter.font import ITALIC
 import turtle as t
 from time import sleep
@@ -51,16 +52,17 @@ score.color('orange')
 score.penup()
 score.hideturtle()
 score.goto(0,260)
-score.write("Player 1: 0    Player 2: 0", align='center', font=('Courier', 24, 'normal'))
+score.write("Player_1: 0        Player_2: 0", align='center', font=('Courier', 24, 'normal'))
 
 #Timer
 count = 0
 timer = t.Turtle()
 timer.speed(0)
-timer.color('purple')
+timer.color('green')
 timer.hideturtle()
-timer.goto(-500, 280)
-timer.write("Timer: 0", align='left',font=('Times New Roman', 18, 'normal', 'bold'))
+timer.goto(0, 260)
+timer.write("0", align='center',font=('Lining and tabular', 24, 'normal'))
+
             
 #default value
 rpaddle.move_up = False
@@ -101,6 +103,7 @@ window.onkeyrelease(lpaddle_up_end, 'w')
 
 window.onkeypress(lpaddle_down_start, 's')
 window.onkeyrelease(lpaddle_down_end, 's')
+
 
 
 while game:
@@ -159,22 +162,21 @@ while game:
         ball.dy *= -1
         player_1 += 1
         score.clear()
-        score.write("Player_1: {}   Player_2: {}".format(player_1, player_2), align='center', font=('Courier', 24, 'normal'))
+        score.write("Player_1: {}        Player_2: {}".format(player_1, player_2), align='center', font=('Courier', 24, 'normal'))
 
     if ball.xcor() < -500:
         ball.goto(0,0)
         ball.dy *= -1
         player_2 += 1
         score.clear()
-        score.write("Player_1: {}   Player_2: {}".format(player_1, player_2), align='center', font=('Courier', 24, 'normal'))
-    
-    #Timer
-    count += 1
-    timer.clear()
-    timer.speed(0)
-    timer.write("Timer: {}".format(count/100),align='left', font=('Times New Roman', 18, 'normal', 'bold'))
-
+        score.write("Player_1: {}        Player_2: {}".format(player_1, player_2), align='center', font=('Courier', 24, 'normal'))
     sleep(0.0001)
     window.update()
-    
 
+    timer.hideturtle()
+    count += 1.65
+    timer.clear()
+    timer.speed(0)
+    timer.write("{}".format(math.trunc(count/100)),align='center', font=('Lining and tabular', 24, 'normal'))
+
+    window.update()
