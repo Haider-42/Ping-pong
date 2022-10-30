@@ -1,5 +1,5 @@
 import turtle as t
-
+from time import sleep
 game: bool = True
 
 #creating a window
@@ -7,17 +7,17 @@ window = t.Screen()
 window.title("The Pong game")
 window.bgcolor('black')
 window.setup(width= 1050, height= 650)
-window.tracer(1)
+window.tracer(0)
 
 #creating a ball
 ball = t.Turtle()
-ball.speed(0)
+ball.speed()
 ball.shape('circle')
 ball.color('Red')
 ball.penup()
 ball.goto(0,0)
-ball.dx = 9
-ball.dy = -9
+ball.dx = 5
+ball.dy = -5
 
 
 #Right paddle
@@ -79,11 +79,10 @@ window.onkeyrelease(lpaddle_down_end, 's')
 
 
 while game:
+    window.update()
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
 
-    # window.update()
-
-    # ball.setx(ball.xcor() + ball.dx)
-    # ball.sety(ball.ycor() + ball.dy)
 
     #creating a border
     if ball.ycor() > 280:
@@ -114,27 +113,28 @@ while game:
     if rpaddle.move_up:
         if rpaddle.ycor() + 40 < 300:
             y = rpaddle.ycor()
-            y += 25
+            y += 15
             rpaddle.sety(y)
 
     if rpaddle.move_down:
         if rpaddle.ycor() - 45 > -300:
             y = rpaddle.ycor()
-            y -= 25
+            y -= 15
             rpaddle.sety(y)
 
     if lpaddle.move_up:
         if lpaddle.ycor() + 40 < 300:
             y = lpaddle.ycor()
-            y += 25
+            y += 15
             lpaddle.sety(y)
 
     if lpaddle.move_down:
         if lpaddle.ycor() - 45 > -300:
             y = lpaddle.ycor()
-            y -= 25
+            y -= 15
             lpaddle.sety(y)
 
+    sleep(0.0001)
     window.update()
     
-input()
+
