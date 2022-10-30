@@ -170,13 +170,12 @@ while game:
         player_2 += 1
         score.clear()
         score.write("Player_1: {}        Player_2: {}".format(player_1, player_2), align='center', font=('Courier', 24, 'normal'))
-    sleep(0.0001)
-    window.update()
 
-    timer.hideturtle()
+    #Updating timer
     count += 1.65
     timer.clear()
     timer.speed(0)
     timer.write("{}".format(math.trunc(count/100)),align='center', font=('Lining and tabular', 24, 'normal'))
 
+    sleep(0.0001) #Refreshing speed
     window.update()
