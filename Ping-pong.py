@@ -1,5 +1,8 @@
+from ast import alias
+from tkinter.font import ITALIC
 import turtle as t
 from time import sleep
+import time
 game: bool = True
 
 #creating a window
@@ -24,7 +27,7 @@ rpaddle = t.Turtle()
 rpaddle.speed(0)
 rpaddle.shape('square')
 rpaddle.color('white')
-rpaddle.shapesize(stretch_wid=6, stretch_len=1)
+rpaddle.shapesize(stretch_wid=6, stretch_len=0.5)
 rpaddle.penup()
 rpaddle.goto(400, 0)
 
@@ -33,7 +36,7 @@ lpaddle = t.Turtle()
 lpaddle.speed(0)
 lpaddle.shape('square')
 lpaddle.color('white')
-lpaddle.shapesize(stretch_wid=6, stretch_len=1)
+lpaddle.shapesize(stretch_wid=6, stretch_len=0.5)
 lpaddle.penup()
 lpaddle.goto(-400, 0)
 
@@ -49,6 +52,15 @@ score.penup()
 score.hideturtle()
 score.goto(0,260)
 score.write("Player 1: 0    Player 2: 0", align='center', font=('Courier', 24, 'normal'))
+
+#Timer
+count = 0
+timer = t.Turtle()
+timer.speed(0)
+timer.color('purple')
+timer.hideturtle()
+timer.goto(-500, 280)
+timer.write("Timer: 0", align='left',font=('Times New Roman', 18, 'normal', 'bold'))
             
 #default value
 rpaddle.move_up = False
@@ -155,6 +167,12 @@ while game:
         player_2 += 1
         score.clear()
         score.write("Player_1: {}   Player_2: {}".format(player_1, player_2), align='center', font=('Courier', 24, 'normal'))
+    
+    #Timer
+    count += 1
+    timer.clear()
+    timer.speed(0)
+    timer.write("Timer: {}".format(count/100),align='left', font=('Times New Roman', 18, 'normal', 'bold'))
 
     sleep(0.0001)
     window.update()
