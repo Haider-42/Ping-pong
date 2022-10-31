@@ -7,7 +7,7 @@ import random
 t.colormode (255)
 
 game: bool = True
-pic = "Ping-pong/backgroundSpace.gif"
+pic = "Ping-pong/nasa_wallpaper.gif"
 
 #creating a window
 window = t.Screen()
