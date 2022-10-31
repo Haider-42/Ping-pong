@@ -1,12 +1,18 @@
+#Python libraries
 import math
 import turtle as t
 from time import sleep
+import random
+
+t.colormode (255)
+
 game: bool = True
+pic = "Ping-pong/backgroundSpace.gif"
 
 #creating a window
 window = t.Screen()
 window.title("The Pong game")
-window.bgcolor('black')
+window.bgpic(pic)
 window.setup(width= 1050, height= 650)
 window.tracer(0)
 
@@ -14,7 +20,7 @@ window.tracer(0)
 ball = t.Turtle()
 ball.speed()
 ball.shape('circle')
-ball.color('Red')
+ball.color('red')
 ball.penup()
 ball.goto(0,0)
 ball.dx = 5
@@ -59,7 +65,6 @@ timer.color('green')
 timer.hideturtle()
 timer.goto(0, 260)
 timer.write("0", align='center',font=('Lining and tabular', 24, 'normal'))
-
             
 #default value
 rpaddle.move_up = False
@@ -101,13 +106,16 @@ window.onkeyrelease(lpaddle_up_end, 'w')
 window.onkeypress(lpaddle_down_start, 's')
 window.onkeyrelease(lpaddle_down_end, 's')
 
-
-
 while game:
-    window.update()
+
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
 
+    #random color
+    r = random.randint(0,255)
+    g = random.randint(0,255)
+    b = random.randint(0,255)
+    rgb = r,g,b
 
     #creating a border
     if ball.ycor() > 250:
@@ -120,11 +128,13 @@ while game:
 
     
     #collsion of the right paddle and ball
-    if(ball.xcor() > 360 and ball.xcor() < 370) and (ball.ycor() < rpaddle.ycor() + 66) and (ball.ycor() > rpaddle.ycor() - 66):
+    if(ball.xcor() > 360 and ball.xcor() < 375) and (ball.ycor() < rpaddle.ycor() + 66) and (ball.ycor() > rpaddle.ycor() - 66):
+        rpaddle.color(rgb)
         ball.setx(360)
-        ball.dx *= -1
+        ball.dx *= -1 
     #collsion of the left paddle and ball
-    if(ball.xcor() < -360 and ball.xcor() > -370) and (ball.ycor() < lpaddle.ycor() + 66) and (ball.ycor() > lpaddle.ycor() - 66):
+    if(ball.xcor() < -360 and ball.xcor() > -375) and (ball.ycor() < lpaddle.ycor() + 66) and (ball.ycor() > lpaddle.ycor() - 66):
+        lpaddle.color(rgb)
         ball.setx(-360)
         ball.dx *= -1
 
